@@ -2,6 +2,10 @@
 
 namespace fitluismacedo\basher;
 
+use App\Console\Commands\Basher\Clean;
+use App\Console\Commands\Basher\Enviroment;
+use App\Console\Commands\Basher\Push;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class basherServiceProvider extends ServiceProvider
@@ -31,12 +35,12 @@ class basherServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/basher.php', 'basher');
+//        $this->mergeConfigFrom(__DIR__ . '/../config/basher.php', 'basher');
 
         // Register the service the package provides.
-        $this->app->singleton('basher', function ($app) {
-            return new basher;
-        });
+//        $this->app->singleton('basher', function ($app) {
+//            return new basher;
+//        });
     }
 
     /**
@@ -48,7 +52,7 @@ class basherServiceProvider extends ServiceProvider
     {
         return ['basher'];
     }
-    
+
     /**
      * Console-specific booting.
      *
@@ -57,9 +61,9 @@ class basherServiceProvider extends ServiceProvider
     protected function bootForConsole()
     {
         // Publishing the configuration file.
-        $this->publishes([
-            __DIR__.'/../config/basher.php' => config_path('basher.php'),
-        ], 'basher.config');
+//        $this->publishes([
+//            __DIR__.'/../config/basher.php' => config_path('basher.php'),
+//        ], 'basher.config');
 
         // Publishing the views.
         /*$this->publishes([
@@ -77,6 +81,19 @@ class basherServiceProvider extends ServiceProvider
         ], 'basher.views');*/
 
         // Registering package commands.
-        // $this->commands([]);
+        if (!is_dir('./app/Console/Commands')) {
+            File::makeDirectory('./app/Console/Commands');
+        }
+
+        $src = "./packages/fitluismacedo/basher/commands";
+        $dest = "./app/Console/Commands/Basher";
+
+        File::copyDirectory($src, $dest);
+
+        $this->commands([
+            Clean::class,
+            Enviroment::class,
+            Push::class,
+        ]);
     }
 }
