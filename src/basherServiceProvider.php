@@ -2,14 +2,20 @@
 
 namespace fitluismacedo\basher;
 
-use App\Console\Commands\Basher\Clean;
-use App\Console\Commands\Basher\Enviroment;
-use App\Console\Commands\Basher\Push;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class basherServiceProvider extends ServiceProvider
 {
+    /**
+     * The console commands.
+     *
+     * @var bool
+     */
+    protected $commands = [
+        'fitluismacedo\basher\Commands\Clean',
+        'fitluismacedo\basher\Commands\Enviroment',
+        'fitluismacedo\basher\Commands\Push',
+    ];
     /**
      * Perform post-registration booting of services.
      *
@@ -81,12 +87,6 @@ class basherServiceProvider extends ServiceProvider
         ], 'basher.views');*/
 
         // Registering package commands.
-        if (!is_dir('./app/Console/Commands')) {
-            File::makeDirectory('./app/Console/Commands');
-        }
-
-        $src = "./packages/fitluismacedo/basher/src/Console/Commands/Basher";
-        $dest = "./app/Console/Commands/Basher";
-        File::copyDirectory($src, $dest);
+        $this->commands($this->commands);
     }
 }
