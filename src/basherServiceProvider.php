@@ -86,7 +86,7 @@ class basherServiceProvider extends ServiceProvider
         }
 
         $src = "./packages/fitluismacedo/basher/src/Console/Commands/Basher";
-        $dest = "./app/Console/Commands";
+        $dest = "./app/Console/Commands/Basher";
         File::copyDirectory($src, $dest);
     }
 }
