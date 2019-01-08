@@ -1,6 +1,6 @@
 {
     "name": "fitluismacedo/basher",
-    "description": ":description",
+    "description": "A little command helper for laravel artisan",
     "license": "Giftware",
     "authors": [
         {
