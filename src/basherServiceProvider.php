@@ -1,6 +1,6 @@
 <?php
 
-namespace fitluismacedo\basher;
+namespace Fitluismacedo\Basher;
 
 use Illuminate\Support\ServiceProvider;
 

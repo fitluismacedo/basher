@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Basher;
+namespace Fitluismacedo\Basher\Commands;
 
 use Illuminate\Console\Command;
 
