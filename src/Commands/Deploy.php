@@ -70,9 +70,10 @@ class Deploy extends Command
         $this->info($composer);
     }
 
-    public function getProjectName($project){
+    public function getProjectName($project)
+    {
         $parts = explode('/', $project);
-        $projectName = explode('.git', $parts[count($parts - 1)])[0];
+        $projectName = explode('.git', $parts[count($parts) - 1])[0];
         return $projectName;
     }
 
@@ -82,12 +83,12 @@ class Deploy extends Command
 
         exec('cd /var/www/html');
 
-        if($rememberCredentials == 'y'){
+        if ($rememberCredentials == 'y') {
             exec('git config credential.helper store');
         }
 
         exec('git clone ' . $project);
-        exec('cd '.$projectName);
+        exec('cd ' . $projectName);
         exec('mkdir vendor');
         exec('chown -R ec2-user:apache /var/www/html/' . $projectName);
         exec('chmod -R 777 /var/www/html/' . $projectName . '/storage');
