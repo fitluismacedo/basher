@@ -15,6 +15,7 @@ class basherServiceProvider extends ServiceProvider
         'fitluismacedo\basher\Commands\Clean',
         'fitluismacedo\basher\Commands\Enviroment',
         'fitluismacedo\basher\Commands\Push',
+        'fitluismacedo\basher\Commands\Deploy',
     ];
     /**
      * Perform post-registration booting of services.

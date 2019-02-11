@@ -31,7 +31,16 @@ pushing files to git, type you commit name and branch to push, if branch is empt
 ``` bash 
 php artisan basher:env [dev|testing|prod|othername]
 ```
-Set .env params to a desired enviroment, type [envname] after command to reset values; need a file .env.[envname] to copy params
+Set .env params to a desired enviroment, type [envname] after command to re-set values; need a file .env.[envname] to copy params
+
+``` bash 
+php artisan basher:deploy
+```
+Install laravel project on server
+1. Set url to cloning and credentials to process
+2. If you don't remember credentials, set 'n' on 2nd question
+3. basher:deploy set all required permisions to run laravel on Amazon Linux ami 2
+
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.
