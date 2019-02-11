@@ -89,6 +89,7 @@ class Deploy extends Command
 
         exec('git clone ' . $project);
         exec('cd ' . $projectName);
+        exec('echo '.config('.env').' > .env');
         exec('mkdir vendor');
         exec('chown -R ec2-user:apache /var/www/html/' . $projectName);
         exec('chmod -R 777 /var/www/html/' . $projectName . '/storage');
