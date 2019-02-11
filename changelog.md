@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to `basher` will be documented in this file.
+##### Version 1.0.1
+- update changelog, contributing and readme files
+``` bash 
+php artisan basher:env --env={dev|testing|prod|othername}
+```
+- validate if file .env.[envname] is created, return warning
 
 ##### Version 1.0.0
 ``` bash 

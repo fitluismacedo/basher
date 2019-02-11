@@ -45,8 +45,11 @@ class Enviroment extends Command
         if (file_exists(base_path('.env'))) {
             unlink(base_path('.env'));
         }
-        copy(base_path('.env.' . $enviroment), base_path('.env'));
-
+        if (!file_exists(base_path('.env.' . $enviroment))) {
+            $this->alert('~# please, create .env.' . $enviroment . ' first');
+        } else {
+            copy(base_path('.env.' . $enviroment), base_path('.env'));
+        }
         $this->alert('~# end basher:env');
     }
 }
