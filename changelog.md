@@ -2,6 +2,10 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.3.2
+- update changelog, contributing and readme files
+- fix error call commands revert and tag inverse
+
 ##### Version 1.3.1
 - update changelog, contributing and readme files
 - fix basher:revert not call

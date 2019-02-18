@@ -37,12 +37,21 @@ class Revert extends Command
      */
     public function handle()
     {
-        $tagname = $this->ask('Tag version [and press enter]');
-        $this->alert('~# init basher:tag');
+        $commitID = $this->ask('commit ID [and press enter]');
+        $branch = $this->ask('branch name [and press enter]');
 
-        exec('git tag -a ' . $tagname . ' -m "Versión ' . $tagname . '"');
-        exec('git push origin '.$tagname);
+        $this->alert('~# init basher:revert');
 
-        $this->alert('~# end basher:tag');
+        exec('git reset ' . $commitID . ' --hard');
+        if (empty($branch) || $branch == '') {
+            $this->info('~# push --force to branch master');
+            exec('git push origin master --force');
+        } else {
+            $this->info('~# push --force to branch ' . $branch);
+            exec('git push origin ' . $branch . '  --force');
+        }
+        exec('git status');
+
+        $this->alert('~# end basher:revert');
     }
 }
