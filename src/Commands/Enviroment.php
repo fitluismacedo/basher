@@ -18,7 +18,7 @@ class Enviroment extends Command
      *
      * @var string
      */
-    protected $description = "Set enviroment params to .env";
+    protected $description = "[Laravel] Set enviroment params to .env for laravel installation";
 
     /**
      * Create a new command instance.

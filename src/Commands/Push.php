@@ -18,7 +18,7 @@ class Push extends Command
      *
      * @var string
      */
-    protected $description = "Push content to Git";
+    protected $description = "[Git][Push] push content to repository";
 
     /**
      * Create a new command instance.

@@ -18,7 +18,7 @@ class Revert extends Command
      *
      * @var string
      */
-    protected $description = "Revert Git content to a specific commit ID";
+    protected $description = "[Git][Revert] revert content to a specific commit ID";
 
     /**
      * Create a new command instance.

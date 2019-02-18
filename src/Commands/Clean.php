@@ -18,7 +18,7 @@ class Clean extends Command
      *
      * @var string
      */
-    protected $description = "Clean all laravel cache's and optimize composer";
+    protected $description = "[Laravel][Composer] Clean all cache's and optimize composer";
 
     /**
      * Create a new command instance.

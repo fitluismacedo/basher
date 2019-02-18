@@ -18,7 +18,7 @@ class Tag extends Command
      *
      * @var string
      */
-    protected $description = "Create tag on Git";
+    protected $description = "[Git][Tag] create tag and push to repository";
 
     /**
      * Create a new command instance.

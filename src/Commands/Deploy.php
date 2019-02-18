@@ -18,7 +18,7 @@ class Deploy extends Command
      *
      * @var string
      */
-    protected $description = "Deploy laravel project on server";
+    protected $description = "[Laravel] Deploy project on server";
 
     /**
      * Create a new command instance.
