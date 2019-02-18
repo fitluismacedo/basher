@@ -37,20 +37,21 @@ class Revert extends Command
      */
     public function handle()
     {
-        $commitID = $this->ask('commit ID [and press enter]');
-        $branch = $this->ask('branch name [and press enter]');
+        $commitID = $this->ask('commit ID [and press enter]', '');
+        $branch = $this->ask('branch name [and press enter]', 'master');
 
         $this->alert('~# init basher:revert');
 
-        exec('git reset ' . $commitID . ' --hard');
-        if (empty($branch) || $branch == '') {
-            $this->info('~# push --force to branch master');
-            exec('git push origin master --force');
-        } else {
+        if($commitID == ''){
+            $this->alert('~# Need commit ID to revert');
+        }else{
+            exec('git reset ' . $commitID . ' --hard');
+
             $this->info('~# push --force to branch ' . $branch);
+
             exec('git push origin ' . $branch . '  --force');
+            exec('git status');
         }
-        exec('git status');
 
         $this->alert('~# end basher:revert');
     }
