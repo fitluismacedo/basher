@@ -46,6 +46,11 @@ php artisan basher:revert
 ```
 Revert files to a specific commit id and force to push content, type [commidID] and [branchname] to continue
 
+``` bash 
+php artisan basher:tag
+```
+Create a git tag and push content, type [tagname] to continue
+
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.
