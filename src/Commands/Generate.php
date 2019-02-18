@@ -37,28 +37,24 @@ class Generate extends Command
      */
     public function handle()
     {
-        $directory = $this->ask('Models directory [and press enter]');
+        $directory = $this->ask('Models directory [and press enter]', 'Default');
         $this->alert('~# init basher:generate');
 
-        $basepath = app_path('/');
+        $basepath = app_path();
         $namespace = 'App/Models';
-        $modelpath = $basepath . 'Models';
+        $modelpath = $basepath . '\\Models';
 
         if (!is_dir($modelpath)) {
-            exec('mkdir -p ' . $modelpath);
+            exec('mkdir ' . $modelpath);
         }
 
         if (!is_dir($modelpath . '/' . $directory)) {
-            exec('mkdir -p ' . $modelpath . '/' . $directory);
+            exec('mkdir ' . $modelpath . '\\' . $directory);
         }
 
-        if (empty($directory) || $directory == '') {
-            $this->info('~# generating on "' . $namespace . '/default" directory');
-            exec('php artisan generate:modelfromtable --all --namespace=' . $namespace . '/Default --folder=' . $modelpath . '/Default');
-        } else {
-            $this->info('~# generating on "' . $namespace . '/' . $directory . '" directory');
-            exec('php artisan generate:modelfromtable --all --namespace=' . $namespace . '/' . ucwords($directory) . ' --folder=' . $modelpath . '/' . ucwords($directory));
-        }
+        $this->info('~# generating on "' . $namespace . '/' . $directory . '" directory');
+
+        exec('php artisan generate:modelfromtable --all --namespace=' . $namespace . '/' . ucwords($directory) . ' --folder=' . str_replace('\\\\', '/', $modelpath) . '/' . ucwords($directory));
 
         $this->alert('~# end basher:generate');
     }
