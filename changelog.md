@@ -2,6 +2,13 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.4.5
+- update changelog, contributing and readme files
+
+##### Version 1.4.5
+- update changelog, contributing and readme files
+- update command basher:generate, validate empty/default value, mejora de codigo
+
 ##### Version 1.4.4
 - update changelog, contributing and readme files
 - update command basher:tag, validate empty/default value
