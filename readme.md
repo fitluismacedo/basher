@@ -41,6 +41,11 @@ Install laravel project on server
 2. If you don't remember credentials, set 'n' on 2nd question
 3. basher:deploy set all required permisions to run laravel on Amazon Linux ami 2
 
+``` bash 
+php artisan basher:revert
+```
+Revert files to a specific commit id and force to push content, type [commidID] and [branchname] to continue
+
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.
