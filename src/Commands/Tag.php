@@ -37,11 +37,15 @@ class Tag extends Command
      */
     public function handle()
     {
-        $tagname = $this->ask('Tag version [and press enter]');
+        $tagname = $this->ask('Tag version [and press enter]', '');
         $this->alert('~# init basher:tag');
 
-        exec('git tag -a ' . $tagname . ' -m "Versión ' . $tagname . '"');
-        exec('git push origin '.$tagname);
+        if($tagname == ''){
+            $this->alert('~# Need a tagname to push');
+        }else{
+            exec('git tag -a ' . $tagname . ' -m "Versión ' . $tagname . '"');
+            exec('git push origin '.$tagname);
+        }
 
         $this->alert('~# end basher:tag');
     }
