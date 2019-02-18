@@ -51,6 +51,11 @@ php artisan basher:tag
 ```
 Create a git tag and push content, type [tagname] to continue
 
+``` bash 
+php artisan basher:generate
+```
+Generate laravel models from mysql connection setted on .env file, type [directory] to generate
+
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.

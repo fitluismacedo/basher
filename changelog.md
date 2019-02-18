@@ -2,6 +2,17 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.4.1
+- update changelog, contributing and readme files
+- add new command, see readme to use:
+``` bash 
+php artisan basher:generate
+```
+
+##### Version 1.3.3
+- update changelog, contributing and readme files
+- update documentation for all commands
+
 ##### Version 1.3.2
 - update changelog, contributing and readme files
 - fix error call commands revert and tag inverse
