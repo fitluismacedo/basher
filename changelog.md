@@ -2,6 +2,13 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.4.7
+- update changelog, contributing and readme files
+- update command basher:generate, fix generate on directory
+
+##### Version 1.4.6
+- update changelog, contributing and readme files
+
 ##### Version 1.4.5
 - update changelog, contributing and readme files
 

@@ -54,7 +54,7 @@ class Generate extends Command
 
         $this->info('~# generating on "' . $namespace . '/' . $directory . '" directory');
 
-        exec('php artisan generate:modelfromtable --all --namespace=' . $namespace . '/' . ucwords($directory) . ' --folder=' . str_replace('\\\\', '/', $modelpath) . '/' . ucwords($directory));
+        exec('php artisan generate:modelfromtable --all --namespace=' . $namespace . '/' . ucwords($directory) . ' --folder=' . $modelpath . '\\' . ucwords($directory));
 
         $this->alert('~# end basher:generate');
     }
