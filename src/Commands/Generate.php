@@ -3,6 +3,7 @@
 namespace Fitluismacedo\Basher\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class Generate extends Command
 {
@@ -37,11 +38,11 @@ class Generate extends Command
      */
     public function handle()
     {
-        $directory = $this->ask('Models directory [and press enter]', 'Default');
+        $directory = $this->ask('Models directory [and press enter]', 'Bashell');
         $this->alert('~# init basher:generate');
 
         $basepath = app_path();
-        $namespace = 'App/Models';
+        $namespace = 'app/Models';
         $modelpath = $basepath . '\\Models';
 
         if (!is_dir($modelpath)) {
@@ -54,7 +55,7 @@ class Generate extends Command
 
         $this->info('~# generating on "' . $namespace . '/' . $directory . '" directory');
 
-        exec('php artisan generate:modelfromtable --all --namespace=' . $namespace . '/' . ucwords($directory) . ' --folder=' . $modelpath . '\\' . ucwords($directory));
+        exec('php artisan generate:modelfromtable --all --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
 
         $this->alert('~# end basher:generate');
     }
