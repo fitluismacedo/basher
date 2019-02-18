@@ -37,20 +37,17 @@ class Push extends Command
      */
     public function handle()
     {
-        $commit = $this->ask('commit name [and press enter]');
-        $branch = $this->ask('branch name [and press enter]');
+        $commit = $this->ask('commit name [and press enter]', 'Avances '.date('Y-m-d H:i:s'));
+        $branch = $this->ask('branch name [and press enter]', 'master');
 
         $this->alert('~# init basher:push');
 
         exec('git add .');
         exec('git commit -am "' . $commit . '"');
-        if (empty($branch) || $branch == '') {
-            $this->info('~# push to branch master');
-            exec('git push origin master');
-        } else {
-            $this->info('~# push to branch ' . $branch);
-            exec('git push origin "' . $branch . '"');
-        }
+
+        $this->info('~# push to branch ' . $branch);
+
+        exec('git push origin "' . $branch . '"');
         exec('git status');
 
         $this->alert('~# end basher:push');
