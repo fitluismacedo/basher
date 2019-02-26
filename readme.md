@@ -56,6 +56,11 @@ php artisan basher:generate
 ```
 Generate laravel models from mysql connection setted on .env file, type [directory] to generate
 
+``` bash 
+php artisan basher:ignore
+```
+Ignore a file that you do not want to commit, type [filename] with project relative path to use
+
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.

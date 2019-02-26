@@ -19,6 +19,7 @@ class basherServiceProvider extends ServiceProvider
         'fitluismacedo\basher\Commands\Push',
         'fitluismacedo\basher\Commands\Revert',
         'fitluismacedo\basher\Commands\Tag',
+        'fitluismacedo\basher\Commands\Ignore',
     ];
     /**
      * Perform post-registration booting of services.
