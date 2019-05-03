@@ -38,15 +38,25 @@ class Ignore extends Command
     public function handle()
     {
         $filename = $this->ask('Filename to ignore, type relative path [and press enter]', '');
-        $this->alert('~# init basher:ignore');
+        $this->greetings();
 
-        if($filename == ''){
+        if ($filename == '') {
             $this->alert('~# Need a filename to ignore');
-        }else{
-            exec('git update-index --assume-unchanged '.$filename);
+        } else {
+            exec('git update-index --assume-unchanged ' . $filename);
         }
 
-        $this->alert('~# end basher:ignore');
+        $this->farewell();
+    }
+
+    public function greetings()
+    {
+        $this->info('~# Init Command');
+    }
+
+    public function farewell()
+    {
+        $this->info('~# End Command');
     }
 
 }

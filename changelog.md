@@ -2,6 +2,17 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.5.0
+- add php artisan clear-compiled on command basher:clean
+- command basher:push pulling content before pushing, previously stashed content and apply stashed after pulling
+- code optimizations on commands
+- optimize verbosity
+- remove deploy function
+- command basher:generate now accept tables comma-separated
+
+##### Version 1.4.9
+- some fixes
+
 ##### Version 1.4.8
 - update changelog, contributing and readme files
 - add new command basher:ignore, see readme to use:

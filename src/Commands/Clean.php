@@ -37,14 +37,26 @@ class Clean extends Command
      */
     public function handle()
     {
-        $this->alert('~# init basher:clean');
+        $this->greetings();
 
         $this->call('cache:clear');
         $this->call('route:clear');
         $this->call('view:clear');
         $this->call('config:clear');
+        $this->call('clear-compiled');
         exec('composer dump-autoload -o');
 
-        $this->alert('~# end basher:clean');
+        $this->farewell();
     }
+
+    public function greetings()
+    {
+        $this->info('~# Init Command');
+    }
+
+    public function farewell()
+    {
+        $this->info('~# End Command');
+    }
+
 }

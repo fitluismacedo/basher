@@ -39,8 +39,7 @@ class Enviroment extends Command
     {
         $enviroment = $this->argument('env');
 
-        $this->alert('~# init basher:env');
-        $this->info('~# change .env params to ' . $enviroment);
+        $this->greetings($enviroment);
 
         if (file_exists(base_path('.env'))) {
             unlink(base_path('.env'));
@@ -49,7 +48,21 @@ class Enviroment extends Command
             $this->alert('~# please, create .env.' . $enviroment . ' first');
         } else {
             copy(base_path('.env.' . $enviroment), base_path('.env'));
+            $this->call('basher:clean');
+            $this->alert('~# .env copied');
         }
-        $this->alert('~# end basher:env');
+        $this->farewell();
     }
+
+    public function greetings($enviroment)
+    {
+        $this->info('~# Init Command');
+        $this->info('~# Copy params from .env.' . $enviroment . ' to .env');
+    }
+
+    public function farewell()
+    {
+        $this->info('~# End Command');
+    }
+
 }

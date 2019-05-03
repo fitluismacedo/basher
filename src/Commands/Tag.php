@@ -38,7 +38,8 @@ class Tag extends Command
     public function handle()
     {
         $tagname = $this->ask('Tag version [and press enter]', '');
-        $this->alert('~# init basher:tag');
+
+        $this->greetings();
 
         if($tagname == ''){
             $this->alert('~# Need a tagname to push');
@@ -47,7 +48,17 @@ class Tag extends Command
             exec('git push origin '.$tagname);
         }
 
-        $this->alert('~# end basher:tag');
+        $this->farewell();
+    }
+
+    public function greetings()
+    {
+        $this->info('~# Init Command');
+    }
+
+    public function farewell()
+    {
+        $this->info('~# End Command');
     }
 
 }

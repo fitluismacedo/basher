@@ -37,19 +37,33 @@ class Push extends Command
      */
     public function handle()
     {
-        $commit = $this->ask('commit name [and press enter]', 'Avances '.date('Y-m-d H:i:s'));
+        $commit = $this->ask('commit name [and press enter]', 'Avances ' . date('Y-m-d H:i:s'));
         $branch = $this->ask('branch name [and press enter]', 'master');
 
-        $this->alert('~# init basher:push');
+        $this->greetings($branch);
+
+        exec('git stash');
+        exec('git pull origin ' . $branch);
+        exec('git stash apply');
 
         exec('git add .');
         exec('git commit -am "' . $commit . '"');
-
-        $this->info('~# push to branch ' . $branch);
-
         exec('git push origin "' . $branch . '"');
         exec('git status');
 
-        $this->alert('~# end basher:push');
+        $this->call('basher:clean');
+        $this->farewell();
+    }
+
+    public function greetings($branch)
+    {
+        $this->info('~# Init Command');
+        $this->info('~# push to branch ' . $branch);
+        $this->info('~# pulling content, if command stacks, execute "git stash apply" to avoid lost changes');
+    }
+
+    public function farewell()
+    {
+        $this->info('~# End Command');
     }
 }

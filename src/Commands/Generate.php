@@ -3,7 +3,6 @@
 namespace Fitluismacedo\Basher\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class Generate extends Command
 {
@@ -12,7 +11,7 @@ class Generate extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:generate';
+    protected $signature = 'basher:generate {option}';
 
     /**
      * The console command description.
@@ -38,12 +37,14 @@ class Generate extends Command
      */
     public function handle()
     {
-        $directory = $this->ask('Models directory [and press enter]', 'Bashell');
-        $this->alert('~# init basher:generate');
+        $directory = $this->ask('Models directory [and press enter]', 'Unknown');
+        $option = $this->argument('option', 'all');
 
         $basepath = app_path();
         $namespace = 'app/Models';
         $modelpath = $basepath . '\\Models';
+
+        $this->greetings($namespace, $directory);
 
         if (!is_dir($modelpath)) {
             exec('mkdir ' . $modelpath);
@@ -53,11 +54,24 @@ class Generate extends Command
             exec('mkdir ' . $modelpath . '\\' . $directory);
         }
 
+        if ($option == 'all') {
+            exec('php artisan generate:modelfromtable --all --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
+        } else {
+            exec('php artisan generate:modelfromtable --table=' . $option . ' --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
+        }
+
+        $this->farewell();
+    }
+
+    public function greetings($namespace, $directory)
+    {
+        $this->info('~# Init Command');
         $this->info('~# generating on "' . $namespace . '/' . $directory . '" directory');
+    }
 
-        exec('php artisan generate:modelfromtable --all --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
-
-        $this->alert('~# end basher:generate');
+    public function farewell()
+    {
+        $this->info('~# End Command');
     }
 
 }

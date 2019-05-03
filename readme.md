@@ -21,25 +21,18 @@ clear all laravel cache's and regenerate composer executing commands:
 - `php artisan route:clear`
 - `php artisan view:clear`
 - `php artisan config:clear`
+- `php artisan clear-compiled`
 - `composer dump-autoload -o`
 
 ``` bash 
 php artisan basher:push
 ```
 pushing files to git, type you commit name and branch to push, if branch is empty, content will push to master branch
-
+* now exec git stash, pull and stash apply before push content
 ``` bash 
 php artisan basher:env [dev|testing|prod|othername]
 ```
 Set .env params to a desired enviroment, type [envname] after command to re-set values; need a file .env.[envname] to copy params
-
-``` bash 
-php artisan basher:deploy
-```
-Install laravel project on server
-1. Set url to cloning and credentials to process
-2. If you don't remember credentials, set 'n' on 2nd question
-3. basher:deploy set all required permisions to run laravel on Amazon Linux ami 2
 
 ``` bash 
 php artisan basher:revert
@@ -55,6 +48,7 @@ Create a git tag and push content, type [tagname] to continue
 php artisan basher:generate
 ```
 Generate laravel models from mysql connection setted on .env file, type [directory] to generate
+* now can generate one o more tables comma-separated
 
 ``` bash 
 php artisan basher:ignore
