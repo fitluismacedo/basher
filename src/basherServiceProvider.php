@@ -13,7 +13,6 @@ class basherServiceProvider extends ServiceProvider
      */
     protected $commands = [
         'fitluismacedo\basher\Commands\Clean',
-        'fitluismacedo\basher\Commands\Deploy',
         'fitluismacedo\basher\Commands\Enviroment',
         'fitluismacedo\basher\Commands\Generate',
         'fitluismacedo\basher\Commands\Push',
