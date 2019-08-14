@@ -37,26 +37,20 @@ class Clean extends Command
      */
     public function handle()
     {
-        $this->greetings();
-
-        $this->call('cache:clear');
-        $this->call('route:clear');
-        $this->call('view:clear');
-        $this->call('config:clear');
-        $this->call('clear-compiled');
-        exec('composer dump-autoload -o');
-
-        $this->farewell();
-    }
-
-    public function greetings()
-    {
-        $this->info('~# Init Command');
-    }
-
-    public function farewell()
-    {
-        $this->info('~# End Command');
+        LogIt::greetings($this);
+        $project_name = env('PROJECT_NAME');
+        if(!empty($project_name)){
+            exec('sudo rm -rf /var/www/html/'.env('PROJECT_NAME').'/bootstrap/cache/*');
+            $this->call('cache:clear');
+            $this->call('route:clear');
+            $this->call('view:clear');
+            $this->call('config:clear');
+            $this->call('clear-compiled');
+            exec('composer dump-autoload -o');
+        }else{
+            $this->error('Please, set PROJECT_NAME variable on .env file');
+        }
+        LogIt::farewell($this);
     }
 
 }

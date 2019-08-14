@@ -2,6 +2,11 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.5.1
+- add validate basher:clean, now, clean inside the project, please, set PROJECT_NAME variable on .env file
+- improve log messages
+- 
+
 ##### Version 1.5.0
 - add php artisan clear-compiled on command basher:clean
 - command basher:push pulling content before pushing, previously stashed content and apply stashed after pulling
