@@ -18,7 +18,7 @@ class Ignore extends Command
      *
      * @var string
      */
-    protected $description = "[Git][Ignore] ignore file to avoid git push sensitive data";
+    protected $description = "Ignore file from Git";
 
     /**
      * Create a new command instance.
@@ -39,24 +39,27 @@ class Ignore extends Command
     {
         $filename = $this->ask('Filename to ignore, type relative path [and press enter]', '');
         $this->greetings();
-
         if ($filename == '') {
-            $this->alert('~# Need a filename to ignore');
+            $this->alert('=> Need a filename to ignore');
         } else {
             exec('git update-index --assume-unchanged ' . $filename);
         }
-
+        $this->alert('=> '.$filename.' ignored');
         $this->farewell();
     }
 
     public function greetings()
     {
-        $this->info('~# Init Command');
+        $this->info('#############');
+        $this->info('Init Command');
+        $this->info('-------------');
     }
 
     public function farewell()
     {
-        $this->info('~# End Command');
+        $this->info('-------------');
+        $this->info('End Command');
+        $this->info('#############');
     }
 
 }

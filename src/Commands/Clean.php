@@ -18,7 +18,7 @@ class Clean extends Command
      *
      * @var string
      */
-    protected $description = "[Laravel][Composer] Clean all cache's and optimize composer";
+    protected $description = "Clean all cache's from laravel projects and optimize composer";
 
     /**
      * Create a new command instance.
@@ -37,7 +37,7 @@ class Clean extends Command
      */
     public function handle()
     {
-        LogIt::greetings($this);
+        $this->greetings();
         $project_name = env('PROJECT_NAME');
         if(!empty($project_name)){
             exec('sudo rm -rf /var/www/html/'.env('PROJECT_NAME').'/bootstrap/cache/*');
@@ -48,9 +48,23 @@ class Clean extends Command
             $this->call('clear-compiled');
             exec('composer dump-autoload -o');
         }else{
-            $this->error('Please, set PROJECT_NAME variable on .env file');
+            $this->error('=> Please, set PROJECT_NAME variable on .env file');
         }
-        LogIt::farewell($this);
+        $this->farewell();
+    }
+
+    public function greetings()
+    {
+        $this->info('#############');
+        $this->info('Init Command');
+        $this->info('-------------');
+    }
+
+    public function farewell()
+    {
+        $this->info('-------------');
+        $this->info('End Command');
+        $this->info('#############');
     }
 
 }

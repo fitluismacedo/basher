@@ -18,7 +18,7 @@ class Revert extends Command
      *
      * @var string
      */
-    protected $description = "[Git][Revert] revert content to a specific commit ID";
+    protected $description = "Revert project to a specific commit ID";
 
     /**
      * Create a new command instance.
@@ -41,26 +41,30 @@ class Revert extends Command
         $branch = $this->ask('branch name [and press enter]', 'master');
 
         $this->greetings($branch);
-
         if($commitID == ''){
-            $this->alert('~# Need commit ID to revert');
+            $this->alert('=> Need commit ID to revert');
         }else{
+            $this->info('=> push --force to branch ' . $branch);
+            $this->alert('=> reset to commit '.$commitID);
             exec('git reset ' . $commitID . ' --hard');
             exec('git push origin ' . $branch . '  --force');
             exec('git status');
+            $this->alert('=> commit reverted');
         }
-
         $this->farewell();
     }
 
-    public function greetings($branch)
+    public function greetings()
     {
-        $this->info('~# Init Command');
-        $this->info('~# push --force to branch ' . $branch);
+        $this->info('#############');
+        $this->info('Init Command');
+        $this->info('-------------');
     }
 
     public function farewell()
     {
-        $this->info('~# End Command');
+        $this->info('-------------');
+        $this->info('End Command');
+        $this->info('#############');
     }
 }

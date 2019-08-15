@@ -2,10 +2,15 @@
 
 All notable changes to `basher` will be documented in this file.
 
-##### Version 1.5.1
+##### Version 1.5.2
+- update descriptions
+- improve log messages and verbosity
 - add validate basher:clean, now, clean inside the project, please, set PROJECT_NAME variable on .env file
-- improve log messages
-- 
+- validate basher:env, now don't delete .env file before set params
+- command basher:tag now can create/delete tags from git
+
+##### Version 1.5.1
+- some fixes
 
 ##### Version 1.5.0
 - add php artisan clear-compiled on command basher:clean

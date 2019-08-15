@@ -18,7 +18,7 @@ class Generate extends Command
      *
      * @var string
      */
-    protected $description = "[Laravel][Generator] generate file models from mysql connection to App/Models directory";
+    protected $description = "Generate models from database connection, default directory app/Models/Unknown";
 
     /**
      * Create a new command instance.
@@ -44,34 +44,33 @@ class Generate extends Command
         $namespace = 'app/Models';
         $modelpath = $basepath . '\\Models';
 
-        $this->greetings($namespace, $directory);
-
-        if (!is_dir($modelpath)) {
-            exec('mkdir ' . $modelpath);
+        $this->greetings();
+        $this->alert('=> generating on "' . $namespace . '/' . $directory . '" directory');
+        exec('mkdir -p ' . $modelpath . '\\' . $directory);
+        switch ($option) {
+            case 'all':
+                exec('php artisan generate:modelfromtable --all --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
+            break;
+            default:
+                exec('php artisan generate:modelfromtable --table=' . $option . ' --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
+            break;
         }
-
-        if (!is_dir($modelpath . '/' . $directory)) {
-            exec('mkdir ' . $modelpath . '\\' . $directory);
-        }
-
-        if ($option == 'all') {
-            exec('php artisan generate:modelfromtable --all --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
-        } else {
-            exec('php artisan generate:modelfromtable --table=' . $option . ' --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
-        }
-
+        $this->alert('=> generated');
         $this->farewell();
     }
 
-    public function greetings($namespace, $directory)
+    public function greetings()
     {
-        $this->info('~# Init Command');
-        $this->info('~# generating on "' . $namespace . '/' . $directory . '" directory');
+        $this->info('#############');
+        $this->info('Init Command');
+        $this->info('-------------');
     }
 
     public function farewell()
     {
-        $this->info('~# End Command');
+        $this->info('-------------');
+        $this->info('End Command');
+        $this->info('#############');
     }
 
 }

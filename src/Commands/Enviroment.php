@@ -18,7 +18,7 @@ class Enviroment extends Command
      *
      * @var string
      */
-    protected $description = "[Laravel] Set enviroment params to .env for laravel installation";
+    protected $description = "Set enviroment params to .env for laravel installation";
 
     /**
      * Create a new command instance.
@@ -38,31 +38,33 @@ class Enviroment extends Command
     public function handle()
     {
         $enviroment = $this->argument('env');
-
-        $this->greetings($enviroment);
-
-        if (file_exists(base_path('.env'))) {
-            unlink(base_path('.env'));
-        }
+        $this->greetings();
         if (!file_exists(base_path('.env.' . $enviroment))) {
-            $this->alert('~# please, create .env.' . $enviroment . ' first');
+            $this->error('=> please, create .env.' . $enviroment . ' first');
         } else {
+            $this->alert('=> copy params from .env.' . $enviroment . ' to .env');
+            if (file_exists(base_path('.env'))) {
+                unlink(base_path('.env'));
+            }
             copy(base_path('.env.' . $enviroment), base_path('.env'));
             $this->call('basher:clean');
-            $this->alert('~# .env copied');
+            $this->alert('=> .env copied');
         }
         $this->farewell();
     }
 
-    public function greetings($enviroment)
+    public function greetings()
     {
-        $this->info('~# Init Command');
-        $this->info('~# Copy params from .env.' . $enviroment . ' to .env');
+        $this->info('#############');
+        $this->info('Init Command');
+        $this->info('-------------');
     }
 
     public function farewell()
     {
-        $this->info('~# End Command');
+        $this->info('-------------');
+        $this->info('End Command');
+        $this->info('#############');
     }
 
 }

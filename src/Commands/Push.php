@@ -18,7 +18,7 @@ class Push extends Command
      *
      * @var string
      */
-    protected $description = "[Git][Push] push content to repository";
+    protected $description = "Push content to Git repository";
 
     /**
      * Create a new command instance.
@@ -40,30 +40,38 @@ class Push extends Command
         $commit = $this->ask('commit name [and press enter]', 'Avances ' . date('Y-m-d H:i:s'));
         $branch = $this->ask('branch name [and press enter]', 'master');
 
-        $this->greetings($branch);
-
+        $this->greetings();
+        $this->info('=> push to branch ' . $branch);
+        $this->info('=> *********************************************************************************** <=');
+        $this->info('=> pulling content, if command stacks, execute "git stash apply" to avoid lost changes <=');
+        $this->info('=> *********************************************************************************** <=');
+        $this->alert('=> update project');
         exec('git stash');
         exec('git pull origin ' . $branch);
         exec('git stash apply');
 
+        $this->alert('=> push content');
         exec('git add .');
         exec('git commit -am "' . $commit . '"');
         exec('git push origin "' . $branch . '"');
         exec('git status');
 
+        $this->alert('=> clean up');
         $this->call('basher:clean');
         $this->farewell();
     }
 
-    public function greetings($branch)
+    public function greetings()
     {
-        $this->info('~# Init Command');
-        $this->info('~# push to branch ' . $branch);
-        $this->info('~# pulling content, if command stacks, execute "git stash apply" to avoid lost changes');
+        $this->info('#############');
+        $this->info('Init Command');
+        $this->info('-------------');
     }
 
     public function farewell()
     {
-        $this->info('~# End Command');
+        $this->info('-------------');
+        $this->info('End Command');
+        $this->info('#############');
     }
 }
