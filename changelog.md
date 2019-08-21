@@ -2,6 +2,9 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.5.3
+- fix error on basher:generate when directory exists
+
 ##### Version 1.5.2
 - update descriptions
 - improve log messages and verbosity

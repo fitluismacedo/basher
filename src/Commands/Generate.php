@@ -46,7 +46,9 @@ class Generate extends Command
 
         $this->greetings();
         $this->alert('=> generating on "' . $namespace . '/' . $directory . '" directory');
-        exec('mkdir -p ' . $modelpath . '\\' . $directory);
+        if(!is_dir($modelpath . '\\' . $directory)){
+            exec('mkdir ' . $modelpath . '\\' . $directory);
+        }
         switch ($option) {
             case 'all':
                 exec('php artisan generate:modelfromtable --all --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
