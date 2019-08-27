@@ -2,6 +2,10 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.6.2
+- update documentations
+- validate default arguments on commands
+
 ##### Version 1.6.1
 - update documentations
 - several fixes on arguments missed

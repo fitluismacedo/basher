@@ -11,7 +11,7 @@ class Push extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:push {commit} {branch}';
+    protected $signature = 'basher:push {commit=default} {branch=default}';
 
     /**
      * The console command description.
@@ -43,10 +43,13 @@ class Push extends Command
             return;
         }
 
-        $commit = $this->argument('commit', '');
-        $branch = $this->argument('branch', 'master');
-        if (empty($commit)) {
+        $commit = $this->argument('commit');
+        $branch = $this->argument('branch');
+        if ($commit == 'default') {
             $commit = 'Avances ' . date('Y-m-d H-i-s');
+        }
+        if ($branch == 'default') {
+            $branch = 'master';
         }
 
         $this->greetings();

@@ -24,7 +24,7 @@ php artisan basher:clean
 clear all laravel cache's and regenerate composer using cache:clear, route:clear, view:clear, config:clear, clear-compiled and composer dump-autoload -o
 
 ``` bash 
-php artisan basher:push {commit} {branch}
+php artisan basher:push {commit=Avances Y-m-d H:i:s} {branch=master}
 ```
 pushing files to git, type you {commit} name and {branch} name to push, if {branch} is empty, content will push to master branch
 * use quotes to set {commit} name
@@ -36,7 +36,7 @@ php artisan basher:env {environment}
 set .env params to a desired enviroment, add {environment} argument to change; need a file .env.[envname] to copy params
 
 ``` bash
-php artisan basher:revert {commidId} {branch}
+php artisan basher:revert {commidId} {branch=master}
 ```
 revert files to a specific commit id and force to push content, add argument {commidId} and branch to continue, if {branch} is empty, content will revert on master branch
 
@@ -47,7 +47,7 @@ create a git tag and push content, add {option} (new/del) argument and {tagname}
 * use quotes to set {tagname} name
 
 ``` bash
-php artisan basher:generate {option} {directory}
+php artisan basher:generate {option=all} {directory=PROJECT_DIRECTORY_NAME}
 ```
 generate laravel models from mysql connection on .env file, add {option} and {directory} argument to generate models
 * now can generate one o more tables comma-separated

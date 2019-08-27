@@ -11,7 +11,7 @@ class Generate extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:generate {option} {directory}';
+    protected $signature = 'basher:generate {option=default} {directory=default}';
 
     /**
      * The console command description.
@@ -43,8 +43,15 @@ class Generate extends Command
             return;
         }
 
-        $option = $this->argument('option', 'all');
-        $directory = $this->argument('directory', $project_name);
+        $option = $this->argument('option');
+        $directory = $this->argument('directory');
+
+        if ($option == 'default') {
+            $option = 'all';
+        }
+        if ($directory == 'default') {
+            $directory = $project_name;
+        }
 
         $basepath = app_path();
         $namespace = 'app/Models';
@@ -52,16 +59,16 @@ class Generate extends Command
 
         $this->greetings();
         $this->alert('=> generating on "' . $namespace . '/' . $directory . '" directory');
-        if(!is_dir($modelpath . '\\' . $directory)){
+        if (!is_dir($modelpath . '\\' . $directory)) {
             exec('mkdir ' . $modelpath . '\\' . $directory);
         }
         switch ($option) {
             case 'all':
                 exec('php artisan generate:modelfromtable --all --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
-            break;
+                break;
             default:
                 exec('php artisan generate:modelfromtable --table=' . $option . ' --namespace=' . ucwords($namespace) . '/' . ucwords($directory) . ' --folder=' . $namespace . '/' . ucwords($directory));
-            break;
+                break;
         }
         $this->alert('=> generated');
         $this->farewell();

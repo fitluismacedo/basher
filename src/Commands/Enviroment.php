@@ -11,7 +11,7 @@ class Enviroment extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:env {env}';
+    protected $signature = 'basher:env {env=local}';
 
     /**
      * The console command description.
@@ -44,6 +44,9 @@ class Enviroment extends Command
         }
 
         $enviroment = $this->argument('env');
+        if($enviroment == 'local'){
+            $this->alert('=> argument env is missing, by default local env is set');
+        }
         if (!file_exists(base_path('.env.' . $enviroment))) {
             $this->error('=> need create .env.' . $enviroment . ' first');
             return;

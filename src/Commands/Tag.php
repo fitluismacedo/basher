@@ -11,7 +11,7 @@ class Tag extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:tag {option} {tagname}';
+    protected $signature = 'basher:tag {option=default} {tagname=default}';
 
     /**
      * The console command description.
@@ -43,11 +43,16 @@ class Tag extends Command
             return;
         }
 
-        $tagname = $this->argument('tagname', '');
-        $option = $this->argument('option', '');
+        $tagname = $this->argument('tagname');
+        $option = $this->argument('option');
 
-        if(empty($tagname)){
-            $this->alert('=> option required');
+        if($tagname == 'default'){
+            $this->alert('=> need a tag name');
+            return;
+        }
+        if($option == 'default'){
+            $this->alert('=> need a option');
+            return;
         }
 
         $this->greetings();

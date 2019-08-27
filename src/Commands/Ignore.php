@@ -11,7 +11,7 @@ class Ignore extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:ignore {filename}';
+    protected $signature = 'basher:ignore {filename=default}';
 
     /**
      * The console command description.
@@ -44,14 +44,14 @@ class Ignore extends Command
         }
 
         $filename = $this->argument('filename');
-        $this->greetings();
-        if (empty($filename)) {
+        if ($filename == 'default') {
             $this->alert('=> need a filename to ignore');
             return;
         }
 
+        $this->greetings();
         exec('git update-index --assume-unchanged ' . $filename);
-        $this->alert('=> '.$filename.' ignored');
+        $this->alert('=> ' . $filename . ' ignored');
         $this->farewell();
     }
 

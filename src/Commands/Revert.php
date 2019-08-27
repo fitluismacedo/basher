@@ -38,21 +38,24 @@ class Revert extends Command
     public function handle()
     {
         $project_name = env('PROJECT_DIRECTORY_NAME');
-        if(empty($project_name)){
+        if (empty($project_name)) {
             $this->error('=> need set PROJECT_DIRECTORY_NAME variable on .env file');
             return;
         }
 
-        $commitID = $this->argument('commitId', '');
-        $branch = $this->argument('branch', 'master');
+        $commitID = $this->argument('commitId');
+        $branch = $this->argument('branch');
 
         $this->greetings();
-        if(empty($commitID)){
+        if ($commitID == 'default') {
             $this->alert('=> need commitId to revert');
             return;
         }
+        if ($branch == 'default') {
+            $branch = 'master';
+        }
 
-        $this->alert('=> reset to commit '.$commitID);
+        $this->alert('=> reset to commit ' . $commitID);
         exec('git reset ' . $commitID . ' --hard');
         $this->info('=> push --force to branch ' . $branch);
         exec('git push origin ' . $branch . '  --force');
