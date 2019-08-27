@@ -37,8 +37,17 @@ class Push extends Command
      */
     public function handle()
     {
-        $commit = $this->ask('commit name [and press enter]', 'Avances ' . date('Y-m-d H:i:s'));
-        $branch = $this->ask('branch name [and press enter]', 'master');
+        $project_name = env('PROJECT_DIRECTORY_NAME');
+        if (empty($project_name)) {
+            $this->error('=> need set PROJECT_DIRECTORY_NAME variable on .env file');
+            return;
+        }
+
+        $commit = $this->argument('commit', '');
+        $branch = $this->argument('branch', 'master');
+        if (empty($commit)) {
+            $commit = 'Avances ' . date('Y-m-d H-i-s');
+        }
 
         $this->greetings();
         $this->info('=> push to branch ' . $branch);

@@ -37,13 +37,20 @@ class Ignore extends Command
      */
     public function handle()
     {
-        $filename = $this->ask('Filename to ignore, type relative path [and press enter]', '');
-        $this->greetings();
-        if ($filename == '') {
-            $this->alert('=> Need a filename to ignore');
-        } else {
-            exec('git update-index --assume-unchanged ' . $filename);
+        $project_name = env('PROJECT_DIRECTORY_NAME');
+        if (empty($project_name)) {
+            $this->error('=> need set PROJECT_DIRECTORY_NAME variable on .env file');
+            return;
         }
+
+        $filename = $this->argument('filename');
+        $this->greetings();
+        if (empty($filename)) {
+            $this->alert('=> need a filename to ignore');
+            return;
+        }
+
+        exec('git update-index --assume-unchanged ' . $filename);
         $this->alert('=> '.$filename.' ignored');
         $this->farewell();
     }

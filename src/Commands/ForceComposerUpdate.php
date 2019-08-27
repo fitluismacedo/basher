@@ -4,21 +4,21 @@ namespace Fitluismacedo\Basher\Commands;
 
 use Illuminate\Console\Command;
 
-class Revert extends Command
+class ForceComposerUpdate extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'basher:revert';
+    protected $signature = 'basher:force-composer-update';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = "Revert project to a specific commit ID";
+    protected $description = "Force project to composer update on server";
 
     /**
      * Create a new command instance.
@@ -38,26 +38,16 @@ class Revert extends Command
     public function handle()
     {
         $project_name = env('PROJECT_DIRECTORY_NAME');
-        if(empty($project_name)){
+        if (empty($project_name)) {
             $this->error('=> need set PROJECT_DIRECTORY_NAME variable on .env file');
             return;
         }
 
-        $commitID = $this->argument('commitId', '');
-        $branch = $this->argument('branch', 'master');
-
         $this->greetings();
-        if(empty($commitID)){
-            $this->alert('=> need commitId to revert');
-            return;
-        }
-
-        $this->alert('=> reset to commit '.$commitID);
-        exec('git reset ' . $commitID . ' --hard');
-        $this->info('=> push --force to branch ' . $branch);
-        exec('git push origin ' . $branch . '  --force');
-        exec('git status');
-        $this->alert('=> commit reverted');
+        exec('sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024');
+        exec('sudo /sbin/mkswap /var/swap.1');
+        exec('sudo /sbin/swapon /var/swap.1');
+        exec('composer update');
         $this->farewell();
     }
 
@@ -74,4 +64,5 @@ class Revert extends Command
         $this->info('End Command');
         $this->info('#############');
     }
+
 }

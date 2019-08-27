@@ -37,8 +37,14 @@ class Generate extends Command
      */
     public function handle()
     {
-        $directory = $this->ask('Models directory [and press enter]', 'Unknown');
+        $project_name = env('PROJECT_DIRECTORY_NAME');
+        if (empty($project_name)) {
+            $this->error('=> need set PROJECT_DIRECTORY_NAME variable on .env file');
+            return;
+        }
+
         $option = $this->argument('option', 'all');
+        $directory = $this->argument('directory', $project_name);
 
         $basepath = app_path();
         $namespace = 'app/Models';

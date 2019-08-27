@@ -37,15 +37,26 @@ class Tag extends Command
      */
     public function handle()
     {
-        $tagname = $this->ask('Tag version [and press enter]', 'versión 0.0.1');
-        $this->greetings();
+        $project_name = env('PROJECT_DIRECTORY_NAME');
+        if(empty($project_name)){
+            $this->error('=> need set PROJECT_DIRECTORY_NAME variable on .env file');
+            return;
+        }
+
+        $tagname = $this->argument('tagname', '');
         $option = $this->argument('option', '');
+
+        if(empty($tagname)){
+            $this->alert('=> option required');
+        }
+
+        $this->greetings();
         switch ($option) {
-            case 'create':
+            case 'new':
                 exec('git tag -a ' . $tagname . ' -m "Versión ' . $tagname . '"');
                 exec('git push origin ' . $tagname);
                 break;
-            case 'delete':
+            case 'del':
                 exec('git tag -d ' . $tagname);
                 exec('git push origin :refs/tags/' . $tagname);
                 break;

@@ -14,6 +14,11 @@ $ composer require fitluismacedo/basher
 
 ## Usage
 ``` bash 
+php artisan basher:force-composer-update
+```
+force to update dependencies from laravel project creating a swap
+
+``` bash 
 php artisan basher:clean
 ```
 clear all laravel cache's and regenerate composer executing commands:
@@ -25,36 +30,36 @@ clear all laravel cache's and regenerate composer executing commands:
 - `composer dump-autoload -o`
 
 ``` bash 
-php artisan basher:push
+php artisan basher:push $commit $branch
 ```
 pushing files to git, type you commit name and branch to push, if branch is empty, content will push to master branch
 * now exec git stash, pull and stash apply before push content
-``` bash 
-php artisan basher:env [dev|testing|prod|othername]
-```
-Set .env params to a desired enviroment, type [envname] after command to re-set values; need a file .env.[envname] to copy params
 
-``` bash 
-php artisan basher:revert
+``` bash
+php artisan basher:env $environment
 ```
-Revert files to a specific commit id and force to push content, type [commidID] and [branchname] to continue
+Set .env params to a desired enviroment, add enviroment argument after command to re-set values; need a file .env.[envname] to copy params
 
-``` bash 
-php artisan basher:tag
+``` bash
+php artisan basher:revert $commidId $branch
 ```
-Create a git tag and push content, type [tagname] to continue
+Revert files to a specific commit id and force to push content, add argument commidId and branch to continue
 
-``` bash 
-php artisan basher:generate
+``` bash
+php artisan basher:tag $option $tagname
 ```
-Generate laravel models from mysql connection setted on .env file, type [directory] to generate
+Create a git tag and push content, add argument option and tagname to continue, use options new or del to create or delete a tag
+
+``` bash
+php artisan basher:generate $option $directory
+```
+Generate laravel models from mysql connection set on .env file, add option and directory argument to generate models
 * now can generate one o more tables comma-separated
 
 ``` bash 
 php artisan basher:ignore
 ```
 Ignore a file that you do not want to commit, type [filename] with project relative path to use
-
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.

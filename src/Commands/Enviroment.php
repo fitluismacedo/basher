@@ -37,19 +37,26 @@ class Enviroment extends Command
      */
     public function handle()
     {
-        $enviroment = $this->argument('env');
-        $this->greetings();
-        if (!file_exists(base_path('.env.' . $enviroment))) {
-            $this->error('=> please, create .env.' . $enviroment . ' first');
-        } else {
-            $this->alert('=> copy params from .env.' . $enviroment . ' to .env');
-            if (file_exists(base_path('.env'))) {
-                unlink(base_path('.env'));
-            }
-            copy(base_path('.env.' . $enviroment), base_path('.env'));
-            $this->call('basher:clean');
-            $this->alert('=> .env copied');
+        $project_name = env('PROJECT_DIRECTORY_NAME');
+        if (empty($project_name)) {
+            $this->error('=> need set PROJECT_DIRECTORY_NAME variable on .env file');
+            return;
         }
+
+        $enviroment = $this->argument('env');
+        if (!file_exists(base_path('.env.' . $enviroment))) {
+            $this->error('=> need create .env.' . $enviroment . ' first');
+            return;
+        }
+
+        $this->greetings();
+        $this->alert('=> copy params from .env.' . $enviroment . ' to .env');
+        if (file_exists(base_path('.env'))) {
+            unlink(base_path('.env'));
+        }
+        copy(base_path('.env.' . $enviroment), base_path('.env'));
+        $this->call('basher:clean');
+        $this->alert('=> .env copied');
         $this->farewell();
     }
 

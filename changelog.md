@@ -2,6 +2,13 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.6.0
+- update documentations
+- change PROJECT_NAME to PROJECT_DIRECTORY_NAME variable
+- minor improvement on basher:clean, basher:env, basher:generate, basher:ignore, basher:push, basher:revert and basher:tag commands 
+- major improvement on basher:tag, change create by "new" and delete by "del" on options
+- add new command basher:force-composer-update, force to update dependencies from laravel project creating a swap
+
 ##### Version 1.5.3
 - fix error on basher:generate when directory exists
 
