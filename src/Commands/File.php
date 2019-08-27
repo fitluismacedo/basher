@@ -63,7 +63,7 @@ class File extends Command
                 $this->alert('=> hide ' . $filename . ' from fit repository');
                 break;
             case 'show':
-                exec('git update-index --assume-changed ' . $filename);
+                exec('git update-index --no-assume-unchanged ' . $filename);
                 $this->alert('=> show ' . $filename . ' from fit repository');
                 break;
             default:
