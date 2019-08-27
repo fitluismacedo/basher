@@ -2,6 +2,10 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.6.3
+- update documentations
+- fix default name on basher:generate 
+
 ##### Version 1.6.2
 - update documentations
 - validate default arguments on commands

@@ -50,7 +50,9 @@ class Generate extends Command
             $option = 'all';
         }
         if ($directory == 'default') {
-            $directory = $project_name;
+            $directory = ucwords($project_name);
+            $directory = str_replace('-', '', $directory);
+            $directory = str_replace('_', '', $directory);
         }
 
         $basepath = app_path();
