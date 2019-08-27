@@ -19,6 +19,7 @@ class basherServiceProvider extends ServiceProvider
         'fitluismacedo\basher\Commands\Revert',
         'fitluismacedo\basher\Commands\Tag',
         'fitluismacedo\basher\Commands\File',
+        'fitluismacedo\basher\Commands\ForceComposerUpdate',
     ];
     /**
      * Perform post-registration booting of services.
