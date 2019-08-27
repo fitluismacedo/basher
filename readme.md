@@ -21,45 +21,45 @@ force to update dependencies from laravel project creating a swap
 ``` bash 
 php artisan basher:clean
 ```
-clear all laravel cache's and regenerate composer executing commands:
-- `php artisan cache:clear`
-- `php artisan route:clear`
-- `php artisan view:clear`
-- `php artisan config:clear`
-- `php artisan clear-compiled`
-- `composer dump-autoload -o`
+clear all laravel cache's and regenerate composer using cache:clear, route:clear, view:clear, config:clear, clear-compiled and composer dump-autoload -o
 
 ``` bash 
-php artisan basher:push $commit $branch
+php artisan basher:push {commit} {branch}
 ```
-pushing files to git, type you commit name and branch to push, if branch is empty, content will push to master branch
+pushing files to git, type you {commit} name and {branch} name to push, if {branch} is empty, content will push to master branch
+* use quotes to set {commit} name
 * now exec git stash, pull and stash apply before push content
 
 ``` bash
-php artisan basher:env $environment
+php artisan basher:env {environment}
 ```
-Set .env params to a desired enviroment, add enviroment argument after command to re-set values; need a file .env.[envname] to copy params
+set .env params to a desired enviroment, add {environment} argument to change; need a file .env.[envname] to copy params
 
 ``` bash
-php artisan basher:revert $commidId $branch
+php artisan basher:revert {commidId} {branch}
 ```
-Revert files to a specific commit id and force to push content, add argument commidId and branch to continue
+revert files to a specific commit id and force to push content, add argument {commidId} and branch to continue, if {branch} is empty, content will revert on master branch
 
 ``` bash
-php artisan basher:tag $option $tagname
+php artisan basher:tag {option} {tagname}
 ```
-Create a git tag and push content, add argument option and tagname to continue, use options new or del to create or delete a tag
+create a git tag and push content, add {option} (new/del) argument and {tagname} to continue
+* use quotes to set {tagname} name
 
 ``` bash
-php artisan basher:generate $option $directory
+php artisan basher:generate {option} {directory}
 ```
-Generate laravel models from mysql connection set on .env file, add option and directory argument to generate models
+generate laravel models from mysql connection on .env file, add {option} and {directory} argument to generate models
 * now can generate one o more tables comma-separated
+* use PROJECT_DIRECTORY_NAME variable on .env to set default directory name 
+- `php artisan basher:generate`
+- `php artisan basher:generate all DevopsStable`
+- `php artisan basher:generate users,migrations,telescope_entries DevopsStable`
 
 ``` bash 
-php artisan basher:ignore
+php artisan basher:ignore {filename}
 ```
-Ignore a file that you do not want to commit, type [filename] with project relative path to use
+Ignore a file that you do not want to commit, add argument {filename} with project relative path to use
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.

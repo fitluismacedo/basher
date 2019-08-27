@@ -11,7 +11,7 @@ class Revert extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:revert';
+    protected $signature = 'basher:revert {commitId} {branch}';
 
     /**
      * The console command description.

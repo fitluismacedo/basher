@@ -2,6 +2,10 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.6.1
+- update documentations
+- several fixes on arguments missed
+
 ##### Version 1.6.0
 - update documentations
 - change PROJECT_NAME to PROJECT_DIRECTORY_NAME variable

@@ -11,7 +11,7 @@ class Generate extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:generate {option}';
+    protected $signature = 'basher:generate {option} {directory}';
 
     /**
      * The console command description.

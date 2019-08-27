@@ -47,6 +47,7 @@ class ForceComposerUpdate extends Command
         exec('sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024');
         exec('sudo /sbin/mkswap /var/swap.1');
         exec('sudo /sbin/swapon /var/swap.1');
+        exec('sudo chmod 777 -R /var/www/html/' . $project_name . '/composer.lock');
         exec('composer update');
         $this->farewell();
     }

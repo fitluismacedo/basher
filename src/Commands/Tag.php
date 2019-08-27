@@ -11,7 +11,7 @@ class Tag extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:tag';
+    protected $signature = 'basher:tag {option} {tagname}';
 
     /**
      * The console command description.

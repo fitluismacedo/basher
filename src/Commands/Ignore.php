@@ -11,7 +11,7 @@ class Ignore extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:ignore';
+    protected $signature = 'basher:ignore {filename}';
 
     /**
      * The console command description.

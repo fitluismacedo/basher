@@ -11,7 +11,7 @@ class Push extends Command
      *
      * @var string
      */
-    protected $signature = 'basher:push';
+    protected $signature = 'basher:push {commit} {branch}';
 
     /**
      * The console command description.
