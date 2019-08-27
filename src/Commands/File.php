@@ -4,14 +4,14 @@ namespace Fitluismacedo\Basher\Commands;
 
 use Illuminate\Console\Command;
 
-class Ignore extends Command
+class File extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'basher:ignore {filename=default}';
+    protected $signature = 'basher:file {option=default} {filepath=default}';
 
     /**
      * The console command description.
@@ -43,15 +43,34 @@ class Ignore extends Command
             return;
         }
 
-        $filename = $this->argument('filename');
+        $option = $this->argument('option');
+        $filename = $this->argument('filepath');
+
+        if ($option == 'default') {
+            $this->alert('=> need a option');
+            return;
+        }
+
         if ($filename == 'default') {
             $this->alert('=> need a filename to ignore');
             return;
         }
 
         $this->greetings();
-        exec('git update-index --assume-unchanged ' . $filename);
-        $this->alert('=> ' . $filename . ' ignored');
+        switch ($option) {
+            case 'hide':
+                exec('git update-index --assume-unchanged ' . $filename);
+                $this->alert('=> hide ' . $filename . ' from fit repository');
+                break;
+            case 'show':
+                exec('git update-index --assume-changed ' . $filename);
+                $this->alert('=> show ' . $filename . ' from fit repository');
+                break;
+            default:
+                $this->alert('=> option invalid ');
+                break;
+        }
+
         $this->farewell();
     }
 

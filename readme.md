@@ -57,9 +57,9 @@ generate laravel models from mysql connection on .env file, add {option} and {di
 - `php artisan basher:generate users,migrations,telescope_entries DevopsStable`
 
 ``` bash 
-php artisan basher:ignore {filename}
+php artisan basher:file {option} {filepath}
 ```
-Ignore a file that you do not want to commit, add argument {filename} with project relative path to use
+hide/show a file that you do not want to commit, add argument {option} to hide/show file and add argument {filepath} to use
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.

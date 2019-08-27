@@ -2,6 +2,12 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.7.0
+- update documentations
+- change command basher:ignore by basher:file
+- basher:file has 2 options, show/hide
+- fix ptoject name on basher:generate
+
 ##### Version 1.6.3
 - update documentations
 - fix default name on basher:generate 

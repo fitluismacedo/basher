@@ -50,7 +50,8 @@ class Generate extends Command
             $option = 'all';
         }
         if ($directory == 'default') {
-            $directory = ucwords($project_name);
+            $directory = ucwords($project_name, '-');
+            $directory = ucwords($directory, '_');
             $directory = str_replace('-', '', $directory);
             $directory = str_replace('_', '', $directory);
         }
