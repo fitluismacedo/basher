@@ -61,6 +61,12 @@ php artisan basher:file {option} {filepath}
 ```
 hide/show a file that you do not want to commit, add argument {option} to hide/show file and add argument {filepath} to use
 
+``` bash 
+php artisan basher:reinstall
+```
+force to update this package
+
+
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.
 

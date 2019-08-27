@@ -2,6 +2,10 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.8.0
+- update documentations
+- add command basher:reinstall, force to update this package
+
 ##### Version 1.7.0
 - update documentations
 - change command basher:ignore by basher:file
