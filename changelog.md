@@ -2,6 +2,10 @@
 
 All notable changes to `basher` will be documented in this file.
 
+##### Version 1.9.0
+- update documentations
+- add command basher:pull, move to project directory and pull content from repository
+
 ##### Version 1.8.1
 - update documentations
 - add path to command basher:force-composer-update

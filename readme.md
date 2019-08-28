@@ -14,37 +14,24 @@ $ composer require fitluismacedo/basher
 
 ## Usage
 ``` bash 
-php artisan basher:force-composer-update
-```
-force to update dependencies from laravel project creating a swap
-
-``` bash 
 php artisan basher:clean
 ```
 clear all laravel cache's and regenerate composer using cache:clear, route:clear, view:clear, config:clear, clear-compiled and composer dump-autoload -o
-
-``` bash 
-php artisan basher:push {commit=Avances Y-m-d H:i:s} {branch=master}
-```
-pushing files to git, type you {commit} name and {branch} name to push, if {branch} is empty, content will push to master branch
-* use quotes to set {commit} name
-* now exec git stash, pull and stash apply before push content
 
 ``` bash
 php artisan basher:env {environment}
 ```
 set .env params to a desired enviroment, add {environment} argument to change; need a file .env.[envname] to copy params
 
-``` bash
-php artisan basher:revert {commidId} {branch=master}
+``` bash 
+php artisan basher:file {option} {filepath}
 ```
-revert files to a specific commit id and force to push content, add argument {commidId} and branch to continue, if {branch} is empty, content will revert on master branch
+hide/show a file that you do not want to commit, add argument {option} to hide/show file and add argument {filepath} to use
 
-``` bash
-php artisan basher:tag {option} {tagname}
+``` bash 
+php artisan basher:force-composer-update
 ```
-create a git tag and push content, add {option} (new/del) argument and {tagname} to continue
-* use quotes to set {tagname} name
+force to update dependencies from laravel project creating a swap
 
 ``` bash
 php artisan basher:generate {option=all} {directory=PROJECT_DIRECTORY_NAME}
@@ -57,15 +44,32 @@ generate laravel models from mysql connection on .env file, add {option} and {di
 - `php artisan basher:generate users,migrations,telescope_entries DevopsStable`
 
 ``` bash 
-php artisan basher:file {option} {filepath}
+php artisan basher:pull
 ```
-hide/show a file that you do not want to commit, add argument {option} to hide/show file and add argument {filepath} to use
+move to project directory and pull content from repository
+
+``` bash 
+php artisan basher:push {commit=Avances Y-m-d H:i:s} {branch=master}
+```
+pushing files to git, type you {commit} name and {branch} name to push, if {branch} is empty, content will push to master branch
+* use quotes to set {commit} name
+* now exec git stash, pull and stash apply before push content
 
 ``` bash 
 php artisan basher:reinstall
 ```
 force to update this package
 
+``` bash
+php artisan basher:revert {commidId} {branch=master}
+```
+revert files to a specific commit id and force to push content, add argument {commidId} and branch to continue, if {branch} is empty, content will revert on master branch
+
+``` bash
+php artisan basher:tag {option} {tagname}
+```
+create a git tag and push content, add {option} (new/del) argument and {tagname} to continue
+* use quotes to set {tagname} name
 
 ## Change log
 Please see the [changelog](changelog.md) for more information on what has changed recently.

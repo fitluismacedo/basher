@@ -14,12 +14,14 @@ class basherServiceProvider extends ServiceProvider
     protected $commands = [
         'fitluismacedo\basher\Commands\Clean',
         'fitluismacedo\basher\Commands\Enviroment',
-        'fitluismacedo\basher\Commands\Generate',
-        'fitluismacedo\basher\Commands\Push',
-        'fitluismacedo\basher\Commands\Revert',
-        'fitluismacedo\basher\Commands\Tag',
         'fitluismacedo\basher\Commands\File',
         'fitluismacedo\basher\Commands\ForceComposerUpdate',
+        'fitluismacedo\basher\Commands\Generate',
+        'fitluismacedo\basher\Commands\Pull',
+        'fitluismacedo\basher\Commands\Push',
+        'fitluismacedo\basher\Commands\Reinstall',
+        'fitluismacedo\basher\Commands\Revert',
+        'fitluismacedo\basher\Commands\Tag',
     ];
     /**
      * Perform post-registration booting of services.
